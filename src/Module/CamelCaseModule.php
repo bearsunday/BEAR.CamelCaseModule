@@ -6,7 +6,7 @@ namespace BEAR\CamelCaseKeyModule\Module;
 
 use BEAR\CamelCaseKeyModule\Annotation\CamelCase;
 use BEAR\CamelCaseKeyModule\CamelCaseKey;
-use BEAR\Resource\Interceptor\CamelCaseKeyInterceptor;
+use BEAR\CamelCaseKeyModule\Interceptor\CamelCaseInterceptor;
 use Ray\Di\AbstractModule;
 
 class CamelCaseModule extends AbstractModule
@@ -20,12 +20,12 @@ class CamelCaseModule extends AbstractModule
         $this->bindPriorityInterceptor(
             $this->matcher->annotatedWith(CamelCase::class),
             $this->matcher->startsWith('on'),
-            [CamelCaseKeyInterceptor::class]
+            [CamelCaseInterceptor::class]
         );
         $this->bindPriorityInterceptor(
             $this->matcher->any(),
             $this->matcher->annotatedWith(CamelCase::class),
-            [CamelCaseKeyInterceptor::class]
+            [CamelCaseInterceptor::class]
         );
     }
 }
